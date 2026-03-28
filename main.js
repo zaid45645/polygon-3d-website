@@ -28,7 +28,7 @@ directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
 renderer.render(scene, camera);
-const background_texture = new THREE.TextureLoader().load('/white_background.png');
+const background_texture = new THREE.TextureLoader().load('/grid_background.png');
 scene.background = background_texture;
 
 
