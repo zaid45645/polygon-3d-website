@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Phantom Sans';
+  src:
+    url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff')
+      format('woff'),
+    url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff2')
+      format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 canvas {
     position: fixed;
     top: 0;
@@ -9,10 +21,11 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    z-index: -1;
 }
 
 * {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Phantom Sans';
     font-weight: 400;
     font-style: normal;
 }
@@ -27,6 +40,33 @@ main {
     grid-template-columns: repeat(12, 1fr);
 }
 
+.working-main {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: 2 / 12;   
+    margin-bottom: 5px; 
+    gap: 20px;
+}
+.working-cons {
+    background-color: red;
+    width:400px;
+    height: 300px;
+    border-radius: 30px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+.working-cons-faq {
+    background-color: red;
+    width:400px;
+    height: 400px;
+    border-radius: 30px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+
 header {
     grid-column: 2 / span 5;
     font-size: 40px;
@@ -34,7 +74,7 @@ header {
     margin-bottom: 150px;
 }
 
-section, audio {
+div, audio {
     grid-column: 2 / 8;
     padding: 16px;
     font-size: 25px;
@@ -48,9 +88,39 @@ p {
     font-family: "Cascadia Mono";
 }
 
-img {
-    padding-top: 45px;
+#polygon_logo {
+    padding-top: 100px;
 }
-
-
+.working-title-container {
+    transform: translateY(55px);
+    padding-left: 30px;
+}
+a {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+a:hover {
+    text-decoration-style: wavy;
+}
+button {
+    width: 200px;
+    height: 65px;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 30px;
+    transition: transform 250ms ease-in-out;
+    
+}
+button:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+header {
+    margin-left: 100px;
+}
 

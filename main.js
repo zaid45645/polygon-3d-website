@@ -7,6 +7,10 @@ import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeom
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 let popcorn;
+let scroll_target  = 0;
+let current_scroll = 0;
+
+camera.position.z = 12
 
 
 const mouse = new THREE.Vector2();
@@ -35,8 +39,8 @@ scene.background = background_texture;
 const model_loader = new GLTFLoader();
 model_loader.load('/popcorn.glb', function (gltf) {
     popcorn = gltf.scene;
-    scene.add(gltf.scene);
-    popcorn.position.x = 5.5;
+    scene.add(popcorn);
+    popcorn.position.set(4, 0, 6);
     popcorn.scale.set(2.8, 2.8, 2.8)
 }, undefined, function (error) {
     console.error(error)
@@ -45,29 +49,31 @@ model_loader.load('/popcorn.glb', function (gltf) {
 function animate() {
     renderer.render(scene, camera);
     if (popcorn) {
-         popcorn.rotation.y += 0.01;
-         popcorn.rotation.z += 0.00001;
+        current_scroll += (scroll_target - current_scroll) * 0.1;
+        popcorn.position.x = 4 + (current_scroll * -0.00001);
+        popcorn.position.z = 6 + (current_scroll * -0.005);
+        
+        popcorn.rotation.y += 0.01;
+        popcorn.rotation.z = current_scroll * -0.001;
     }
 
 }
 
-function moveCamera() {
-    const t = document.body.getBoundingClientRect().top;
-
-    const baseZ = 8;
-    camera.position.z = baseZ + (t * 0.0003); 
-    camera.position.y = t * -0.000; 
-    camera.position.x = t * -0.00009;
+function movePopcorn() {
+  scroll_target = document.body.getBoundingClientRect().top;
 }
 
-document.body.onscroll = moveCamera;
-moveCamera();
+
+window.addEventListener('scroll', movePopcorn);
+
+
+
 
 window.addEventListener('load', () => {
     setTimeout(() => {
         window.scrollTo(0,0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
-        moveCamera();
+        movePopcorn();
     }, 50);
 });
