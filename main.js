@@ -21,6 +21,7 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animate);
+renderer.devicePixelRatio = Math.min(window.devicePixelRatio, 2);
 
 
 
@@ -65,6 +66,20 @@ function movePopcorn() {
 
 
 window.addEventListener('scroll', movePopcorn);
+
+// Handle window resize for responsive canvas
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Update camera aspect ratio
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    
+    // Update renderer size
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
 
 
 
