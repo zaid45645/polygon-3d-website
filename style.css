@@ -75,8 +75,8 @@ header {
     align-items: flex-start;
     padding: 32px;
     margin-bottom: 250px;
-    margin-top: 100px;
-    margin-left: 65px;
+    margin-top: 110px;
+    margin-left: 100px;
 }
 
 div, audio {
@@ -100,6 +100,13 @@ p {
     height: auto;
     padding: 0;
     margin-bottom: -30px;
+}
+#polygon_clubs_logo {
+    max-width: 100%;
+    width: 685px;
+    height: auto;
+    padding: 0;
+    margin-bottom: -15px;
 }
 .working-title-container {
     transform: translateY(55px);
